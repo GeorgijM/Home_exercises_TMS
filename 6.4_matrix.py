@@ -50,3 +50,6 @@ if sub_diagonal == 1:
     print('Matrix NONsymetric by sub diagonal ')
 else:
     print('Matrix Symetric by sub diagonal ')
+
+
+#change test for github
