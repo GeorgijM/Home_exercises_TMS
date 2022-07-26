@@ -1,7 +1,7 @@
 import json, csv
 def create_json_file():
-
-     People =   [
+    global People
+    People =   [
             {
                 "name": "John Smith",
                 "birthday": "02.10.1990",
@@ -30,7 +30,7 @@ def create_json_file():
 
 
 
-     with open('exercise_7.1.json', 'w') as file_json:
+    with open('exercise_7.1.json', 'w') as file_json:
         json.dump(People, file_json, indent=1)
 
 
@@ -39,6 +39,7 @@ create_json_file()
 
 
 def json_read_to_csv():
+    global all_data
     with open('exercise_7.1.json') as file_read_to_csv:
         data = json.load(file_read_to_csv)
 
@@ -52,7 +53,7 @@ def json_read_to_csv():
             all_data.append(list(i.values())) #добавляем к шапке таблицы значения из словаря
 
         #print(type(all_data))
-        print(all_data)
+        #print(all_data)
 
         #делаем разметку для будущего csv файла. добавляем разделитель "/", т.к. запятые уже есть во вложенных списках
         j = 1
@@ -64,10 +65,50 @@ def json_read_to_csv():
         all_data_delimetr = []
         for i in all_data:
             all_data_delimetr.append([[x] + ['/'] for x in i])
+        print(all_data_delimetr) #TODO:  как вывести это на печать без скобок??
 
 
-        #
-        # print(all_data)
-        #print(a)
-        print(all_data_delimetr)
 json_read_to_csv()
+
+
+def save_data_to_csv():
+    with open('exercise_7.1.csv', 'w') as file_csv:
+        json_read_to_csv()
+        file_writer = csv.writer(file_csv, delimiter='?')
+        file_writer.writerows(all_data)
+
+save_data_to_csv()
+
+print('==============')
+print(all_data)
+
+def add_to_json():
+    name = input('Name: ')
+    birthday = input('Birthday: ')
+    height = input('Height: ')
+    weight = input('Weight: ')
+    car = input('Car: ')
+    languages = input('Languages: ').split()
+
+    new_person = [
+        {
+            "name": name,
+            "birthday":  birthday,
+            "height": height,
+            "weight": weight,
+            "car": car,
+            "languages": languages
+        },
+      ]
+
+
+    with open('exercise_7.1.json', 'r+') as file_add:
+        People_add = json.load(file_add)
+        People_add.append(new_person)
+
+
+
+
+        json.dump(People_add, file_add, indent=1)
+
+add_to_json()
