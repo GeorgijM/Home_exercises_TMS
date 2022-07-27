@@ -152,7 +152,7 @@ def add_to_csv():
         file_writer = csv.writer(file, delimiter='?')
         file_writer.writerow(new_person)
 
-add_to_csv()
+#add_to_csv()
 
 def person_search_by_name_csv():
     with open('exercise_7.1.json') as file_read_to_csv:
@@ -168,3 +168,18 @@ def person_search_by_name_csv():
             for k in i:
                 print(f'{k}:  {i[k]}')
 
+#person_search_by_name_csv()
+
+def persons_by_language():
+    with open('exercise_7.1.json') as file_read_to_csv:
+        data = json.load(file_read_to_csv)
+    print(data)
+    print('=============')
+    for i in data:
+        print(i.get('languages'))
+    language = input('Which language would you like to choose? :')
+    for i in data:
+        if language in i.get('languages'):
+            print(i['name'])
+
+persons_by_language()
