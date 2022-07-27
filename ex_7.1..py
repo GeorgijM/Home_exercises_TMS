@@ -165,7 +165,6 @@ def person_search_by_name_csv():
     for i in data:
         if i.get('name') == name:
             print(i)
-            # for k in i:
-            #     print(k)
-
+            for k in i:
+                print(f'{k}:  {i[k]}')
 
