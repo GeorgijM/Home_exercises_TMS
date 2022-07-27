@@ -71,13 +71,22 @@ def json_read_to_csv():
 json_read_to_csv()
 
 
-def save_data_to_csv():
+def create_csv():
     with open('exercise_7.1.csv', 'w') as file_csv:
         #json_read_to_csv()
         file_writer = csv.writer(file_csv, delimiter='?')
         file_writer.writerows(all_data)
 
-save_data_to_csv()
+create_csv()
+
+
+def save_data_to_csv():
+    with open('exercise_7.1.csv', 'a') as file_csv:
+        #json_read_to_csv()
+        file_writer = csv.writer(file_csv, delimiter='?')
+        file_writer.writerows(all_data)
+
+
 
 print('==============')
 print(all_data)
@@ -111,11 +120,13 @@ def add_to_json():
 
         json.dump(People_add, file_add, indent=1)
 
+    save_data_to_csv()
 #add_to_json()
 
-save_data_to_csv()
+
 
 print('=======================')
+
 def add_to_csv():
     name = input('Name: ')
     birthday = input('Birthday: ')
@@ -142,3 +153,19 @@ def add_to_csv():
         file_writer.writerow(new_person)
 
 add_to_csv()
+
+def person_search_by_name_csv():
+    with open('exercise_7.1.json') as file_read_to_csv:
+        data = json.load(file_read_to_csv)
+    print(data)
+    print('=============')
+    for i in data:
+        print(i.get('name'))
+    name = input('Which person would you like to choose? :')
+    for i in data:
+        if i.get('name') == name:
+            print(i)
+            # for k in i:
+            #     print(k)
+
+
