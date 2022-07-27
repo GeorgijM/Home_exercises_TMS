@@ -1,4 +1,4 @@
-import json, csv
+import json, csv, time
 def create_json_file():
     global People
     People =   [
@@ -192,7 +192,12 @@ def average_height_till_birth():
     for i in data:
         print(i.get('birthday'))
     birth_date = input('Which date would you like to choose? :')
+
+    input_date_for_comparison = time.strptime(birth_date, "%d.%m.%Y")
+
     for i in data:
-        if birth_date > i.get('birthday'):
+        person_bday = i.get('birthday')
+        person_input_date_for_comparison = time.strptime(person_bday, "%d.%m.%Y")
+        if input_date_for_comparison > person_input_date_for_comparison:
             print(i['birthday'])
-            # TODO import datetime
+average_height_till_birth()
