@@ -182,4 +182,17 @@ def persons_by_language():
         if language in i.get('languages'):
             print(i['name'])
 
-persons_by_language()
+#persons_by_language()
+
+def average_height_till_birth():
+    with open('exercise_7.1.json') as file_read_to_csv:
+        data = json.load(file_read_to_csv)
+    print(data)
+    print('=============')
+    for i in data:
+        print(i.get('birthday'))
+    birth_date = input('Which date would you like to choose? :')
+    for i in data:
+        if birth_date > i.get('birthday'):
+            print(i['birthday'])
+            # TODO import datetime
