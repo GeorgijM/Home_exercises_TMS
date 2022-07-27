@@ -56,7 +56,7 @@ def json_read_to_csv():
         #print(all_data)
 
         #делаем разметку для будущего csv файла. добавляем разделитель "/", т.к. запятые уже есть во вложенных списках
-        j = 1
+        #j = 1
         # while j < len(all_data):
         #     #print(j)
         #     all_data.insert(j, '/')
@@ -73,7 +73,7 @@ json_read_to_csv()
 
 def save_data_to_csv():
     with open('exercise_7.1.csv', 'w') as file_csv:
-        json_read_to_csv()
+        #json_read_to_csv()
         file_writer = csv.writer(file_csv, delimiter='?')
         file_writer.writerows(all_data)
 
@@ -102,8 +102,8 @@ def add_to_json():
       ]
 
 
-    with open('exercise_7.1.json', 'r+') as file_add:
-        People_add = json.load(file_add)
+    with open('exercise_7.1.json', 'r+') as file_add_json:
+        People_add = json.load(file_add_json)
         People_add.append(new_person)
 
 
@@ -111,6 +111,34 @@ def add_to_json():
 
         json.dump(People_add, file_add, indent=1)
 
-add_to_json()
+#add_to_json()
 
+save_data_to_csv()
+
+print('=======================')
 def add_to_csv():
+    name = input('Name: ')
+    birthday = input('Birthday: ')
+    height = input('Height: ')
+    weight = input('Weight: ')
+    car = input('Car: ')
+    languages = input('Languages: ').split()
+
+    new_person = [
+
+        name,
+        birthday,
+        height,
+        weight,
+        car,
+        languages
+    ]
+
+
+    with open('exercise_7.1.csv', 'a') as file:
+
+
+        file_writer = csv.writer(file, delimiter='?')
+        file_writer.writerow(new_person)
+
+add_to_csv()
