@@ -34,7 +34,7 @@ def create_json_file():
         json.dump(People, file_json, indent=1)
 
 
-create_json_file()
+#create_json_file()
 
 
 
@@ -65,10 +65,10 @@ def json_read_to_csv():
         all_data_delimetr = []
         for i in all_data:
             all_data_delimetr.append([[x] + ['/'] for x in i])
-        print(all_data_delimetr) #TODO:  как вывести это на печать без скобок??
+        print(all_data_delimetr) #TODO:  как вывести это на печать без скобок
 
 
-json_read_to_csv()
+#json_read_to_csv()
 
 
 def create_csv():
@@ -77,7 +77,7 @@ def create_csv():
         file_writer = csv.writer(file_csv, delimiter='?')
         file_writer.writerows(all_data)
 
-create_csv()
+#create_csv()
 
 
 def save_data_to_csv():
@@ -88,8 +88,8 @@ def save_data_to_csv():
 
 
 
-print('==============')
-print(all_data)
+# print('==============')
+# print(all_data)
 
 def add_to_json():
     name = input('Name: ')
@@ -125,7 +125,7 @@ def add_to_json():
 
 
 
-print('=======================')
+#print('=======================')
 
 def add_to_csv():
     name = input('Name: ')
@@ -154,9 +154,9 @@ def add_to_csv():
 
 #add_to_csv()
 
-def person_search_by_name_csv():
-    with open('exercise_7.1.json') as file_read_to_csv:
-        data = json.load(file_read_to_csv)
+def person_search_by_name_json():
+    with open('exercise_7.1.json') as file_json:
+        data = json.load(file_json)
     print(data)
     print('=============')
     for i in data:
@@ -168,11 +168,11 @@ def person_search_by_name_csv():
             for k in i:
                 print(f'{k}:  {i[k]}')
 
-#person_search_by_name_csv()
+#person_search_by_name_json()
 
 def persons_by_language():
-    with open('exercise_7.1.json') as file_read_to_csv:
-        data = json.load(file_read_to_csv)
+    with open('exercise_7.1.json') as file_json:
+        data = json.load(file_json)
     print(data)
     print('=============')
     for i in data:
@@ -188,8 +188,8 @@ def average_height_till_birth():
     count = 0
     summ_person_higth = 0
 
-    with open('exercise_7.1.json') as file_read_to_csv:
-        data = json.load(file_read_to_csv)
+    with open('exercise_7.1.json') as file_json:
+        data = json.load(file_json)
     print(data)
     print('=============')
     for i in data:
@@ -221,4 +221,4 @@ def average_height_till_birth():
 
 
 
-average_height_till_birth()
+#average_height_till_birth()
