@@ -185,6 +185,9 @@ def persons_by_language():
 #persons_by_language()
 
 def average_height_till_birth():
+    count = 0
+    summ_person_higth = 0
+
     with open('exercise_7.1.json') as file_read_to_csv:
         data = json.load(file_read_to_csv)
     print(data)
@@ -192,12 +195,30 @@ def average_height_till_birth():
     for i in data:
         print(i.get('birthday'))
     birth_date = input('Which date would you like to choose? :')
-
+    # Из модуля time используем метод strptime, который сообщает Питону в каком формате дата
+    # для дальнейшего сравнения
     input_date_for_comparison = time.strptime(birth_date, "%d.%m.%Y")
+
 
     for i in data:
         person_bday = i.get('birthday')
         person_input_date_for_comparison = time.strptime(person_bday, "%d.%m.%Y")
         if input_date_for_comparison > person_input_date_for_comparison:
             print(i['birthday'])
+            count += 1
+            person_hight = i.get('height')
+            summ_person_higth += person_hight
+            print(person_hight)
+
+    if count > 1:
+        print(f'There are {count} younger persons. Their average height is'
+              f' {summ_person_higth/count} cm.')
+    elif count == 1:
+        print(f'There is only  one younger person. His height is'
+              f' {summ_person_higth / count} cm.')
+    else:
+        print('There are no younger persons in the database.')
+
+
+
 average_height_till_birth()
