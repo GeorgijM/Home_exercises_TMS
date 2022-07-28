@@ -1,4 +1,8 @@
 import json, csv, time
+
+
+
+
 def create_json_file():
     global People
     People =   [
@@ -40,6 +44,7 @@ def create_json_file():
 
 def json_read_to_csv():
     global all_data
+    global all_data_delimetr
     with open('exercise_7.1.json') as file_read_to_csv:
         data = json.load(file_read_to_csv)
 
@@ -65,13 +70,14 @@ def json_read_to_csv():
         all_data_delimetr = []
         for i in all_data:
             all_data_delimetr.append([[x] + ['/'] for x in i])
-        print(all_data_delimetr) #TODO:  как вывести это на печать без скобок
+        #print(all_data_delimetr) #TODO:  как вывести это на печать без скобок
 
 
 #json_read_to_csv()
 
 
 def create_csv():
+    json_read_to_csv()
     with open('exercise_7.1.csv', 'w') as file_csv:
         #json_read_to_csv()
         file_writer = csv.writer(file_csv, delimiter='?')
@@ -99,8 +105,7 @@ def add_to_json():
     car = input('Car: ')
     languages = input('Languages: ').split()
 
-    new_person = [
-        {
+    new_person = {
             "name": name,
             "birthday":  birthday,
             "height": height,
@@ -108,19 +113,15 @@ def add_to_json():
             "car": car,
             "languages": languages
         },
-      ]
+
 
 
     with open('exercise_7.1.json', 'r+') as file_add_json:
         People_add = json.load(file_add_json)
         People_add.append(new_person)
+        json.dump(People_add, file_add_json, indent=1)
 
 
-
-
-        json.dump(People_add, file_add, indent=1)
-
-    save_data_to_csv()
 #add_to_json()
 
 
@@ -157,8 +158,8 @@ def add_to_csv():
 def person_search_by_name_json():
     with open('exercise_7.1.json') as file_json:
         data = json.load(file_json)
-    print(data)
-    print('=============')
+    ##print(data)
+    #print('=============')
     for i in data:
         print(i.get('name'))
     name = input('Which person would you like to choose? :')
@@ -173,8 +174,6 @@ def person_search_by_name_json():
 def persons_by_language():
     with open('exercise_7.1.json') as file_json:
         data = json.load(file_json)
-    print(data)
-    print('=============')
     for i in data:
         print(i.get('languages'))
     language = input('Which language would you like to choose? :')
@@ -190,8 +189,6 @@ def average_height_till_birth():
 
     with open('exercise_7.1.json') as file_json:
         data = json.load(file_json)
-    print(data)
-    print('=============')
     for i in data:
         print(i.get('birthday'))
     birth_date = input('Which date would you like to choose? :')
@@ -222,3 +219,55 @@ def average_height_till_birth():
 
 
 #average_height_till_birth()
+
+
+#Menu
+print(f'Please choose and enter the action number:\n'
+      f'1. Create new files "exercise_7.1.json" and "exercise_7.1.csv"\n'
+      f'   with default data (3 persons).\n'
+      f'2. Print in console data from "exercise_7.1.json" in csv format.\n'
+      f'3. Add new person into "exercise_7.1.json".\n'
+      f'4. Add new person into "exercise_7.1.csv".\n'
+      f'5. Get person\'s data by Name.\n'
+      f'6. Get persons with certain programming language.\n'
+      f'7. Get average hight among those who younger certain date.\n'
+      f'8. QUIT\n'
+      f'\n'
+      f'Number of your choice is: ')
+
+menu_item = 0
+while menu_item != 8:
+    menu_item = int(input())
+    if menu_item > 8 or menu_item < 1:
+        print('Choose between 1 and 8')
+        print(f'1-7 for action or 8 for QUIT')
+    if menu_item == 1:
+        create_json_file()
+        create_csv()
+        print('Files "exercise_7.1.json" and "exercise_7.1.csv have been created.')
+        print(f'1-7 for action or 8 for QUIT')
+    elif menu_item == 2:
+        json_read_to_csv()
+        print(all_data_delimetr)
+        json_read_to_csv()
+        print('Action 2 finished.')
+        print(f'1-7 for action or 8 for QUIT')
+    elif menu_item == 3:
+        add_to_json()
+        print('New person added in "exercise_7.1.json"')
+        print(f'1-7 for action or 8 for QUIT')
+    elif menu_item == 4:
+        add_to_csv()
+        print('New person added in "exercise_7.1.csv"')
+        print(f'1-7 for action or 8 for QUIT')
+    elif menu_item == 5:
+        person_search_by_name_json()
+        print(f'1-7 for action or 8 for QUIT')
+    elif menu_item == 6:
+        persons_by_language()
+        print(f'1-7 for action or 8 for QUIT')
+    elif menu_item == 7:
+        average_height_till_birth()
+        print(f'1-7 for action or 8 for QUIT')
+    elif menu_item == 8:
+        print('Bye.')
