@@ -112,13 +112,14 @@ def add_to_json():
             "weight": weight,
             "car": car,
             "languages": languages
-        },
+        }
 
-
-
-    with open('exercise_7.1.json', 'r+') as file_add_json:
+    with open('exercise_7.1.json', 'r') as file_add_json:
         People_add = json.load(file_add_json)
-        People_add.append(new_person)
+
+    People_add.append(new_person)
+
+    with open('exercise_7.1.json', 'w') as file_add_json:
         json.dump(People_add, file_add_json, indent=1)
 
 
