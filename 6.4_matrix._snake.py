@@ -91,17 +91,21 @@ up_flag_left = 0
 left_flag_left = 0
 down_flag_left = 0
 right_flag_left = 0
-#while end_
+
 shift = 0
 for steps in range (shift + 1):
     for step in range(shift + 1):
         up_step()
+        up_flag_left = +1
     for step in range(shift + 1):
         left_step()
+        left_flag_left = +1
     for step2 in range(shift + 2):
         down_step()
+        down_flag_left = +1
     for step2 in range(shift + 2):
         right_step()
+        right_flag_left = +1
 
 
 shift += 1
