@@ -36,8 +36,8 @@ print('====================')
 #matrix2 = [e for ]
 # change the definite elem
 #print(matrix[0][1])
-start_i = 3   #first index in matrix element
-start_j = 3   #second index in matrix element
+start_i = 2   #first index in matrix element
+start_j = 2   #second index in matrix element
 i = start_i     #a[i][j]
 j = start_j     #a[i][j]
 steps_in_circle_part = 1 #the way to go round the matrix start item is doing 1 step two times,
@@ -46,13 +46,17 @@ steps_in_circle_part = 1 #the way to go round the matrix start item is doing 1 s
 
 
 matrix[i][j] = 'x'
-count = 1
+count = 10
 
 def up_step():
     global count
     global i
     global j
+    global flag
+
     if i > 0:
+        if matrix[i - 1][j] != 0:
+            flag = 'stop'
         matrix[i-1][j] = count
         count +=1
         i -= 1
@@ -62,7 +66,11 @@ def left_step():
     global count
     global i
     global j
+    global flag
+
     if j > 0:
+        if matrix[i][j - 1] != 0:
+            flag = 'stop'
         matrix[i][j-1] = count
         count += 1
         j -= 1
@@ -73,7 +81,11 @@ def down_step():
     global count
     global i
     global j
+    global flag
+
     if i < n-1:
+        if matrix[i + 1][j] != 0:
+            flag = 'stop'
         matrix[i+1][j] = count
         count += 1
         i += 1
@@ -86,11 +98,17 @@ def right_step():
     global count
     global i
     global j
-    if (j < n-1) and (matrix[i][j+1] == 0) :
+    global flag
+
+
+    if (j < n-1):
+        if matrix[i][j + 1] != 0:
+            flag = 'stop'
         matrix[i][j+1] = count
         count += 1
         j += 1
 
+flag = 'process'
 up_flag_left = 0
 left_flag_left = 0
 down_flag_left = 0
@@ -103,40 +121,69 @@ shift_down_right = 2
 
 
 # while a[i][j]
-for steps in range (shift + 1):
-    for step in range(shift_up_left):
-        up_step()
-        up_flag_left = +1
-    for step in range(shift_up_left):
-        left_step()
-        left_flag_left = +1
-    for step2 in range(shift_down_right):
-        down_step()
-        down_flag_left = +1
-    for step2 in range(shift_down_right):
-        right_step()
-        right_flag_left = +1
+print(flag)
+
+#flag = 'stop'
+# while True:
+#     if flag == 'stop':
+#         break
+#
+#     for steps in range (10):
+#         for step in range(shift_up_left):
+#             if flag == 'stop':
+#                 break
+#             up_step()
+#             up_flag_left = +1
+#         for step in range(shift_up_left):
+#             if flag == 'stop':
+#                 break
+#             left_step()
+#             left_flag_left = +1
+#         for step2 in range(shift_down_right):
+#             if flag == 'stop':
+#                 break
+#             down_step()
+#             down_flag_left = +1
+#         for step2 in range(shift_down_right):
+#             if flag == 'stop':
+#                 break
+#             right_step()
+#             right_flag_left = +1
+#
+#         shift_up_left += 2
+#         shift_down_right += 2
+# print(flag)
+
+
+shift +=1
+
+
+
+for steps in range (10):
+for step in range(shift_up_left):
+    if flag == 'stop':
+        break
+    up_step()
+    up_flag_left = +1
+for step in range(shift_up_left):
+    if flag == 'stop':
+        break
+    left_step()
+    left_flag_left = +1
+for step2 in range(shift_down_right):
+    if flag == 'stop':
+        break
+    down_step()
+    down_flag_left = +1
+for step2 in range(shift_down_right):
+    if flag == 'stop':
+        break
+    right_step()
+    right_flag_left = +1
 
 shift_up_left += 2
 shift_down_right += 2
-shift +=1
-
-up_step()
-up_step()
-up_step()
-
-left_step()
-left_step()
-left_step()
-
-down_step()
-down_step()
-down_step()
-down_step()
-down_step()
-down_step()
-
-right_step()
+print(flag)
 
 
 
@@ -164,3 +211,5 @@ print(f'{i=}')
 print(f'{j=}')
 print(f'{n=}')
 print(matrix[i][j])
+
+print(flag)
