@@ -46,7 +46,7 @@ steps_in_circle_part = 1 #the way to go round the matrix start item is doing 1 s
 
 
 matrix[i][j] = 'x'
-count = 10
+count = 1
 
 def up_step():
     global count
@@ -57,9 +57,10 @@ def up_step():
     if i > 0:
         if matrix[i - 1][j] != 0:
             flag = 'stop'
-        matrix[i-1][j] = count
-        count +=1
-        i -= 1
+        else:
+            matrix[i-1][j] = count
+            count +=1
+            i -= 1
 
 
 def left_step():
@@ -71,9 +72,10 @@ def left_step():
     if j > 0:
         if matrix[i][j - 1] != 0:
             flag = 'stop'
-        matrix[i][j-1] = count
-        count += 1
-        j -= 1
+        else:
+            matrix[i][j-1] = count
+            count += 1
+            j -= 1
 
 
 
@@ -86,9 +88,10 @@ def down_step():
     if i < n-1:
         if matrix[i + 1][j] != 0:
             flag = 'stop'
-        matrix[i+1][j] = count
-        count += 1
-        i += 1
+        else:
+            matrix[i+1][j] = count
+            count += 1
+            i += 1
     # elif i == n-1:
     #     matrix[i][j] = count
     #     count += 1
@@ -104,9 +107,10 @@ def right_step():
     if (j < n-1):
         if matrix[i][j + 1] != 0:
             flag = 'stop'
-        matrix[i][j+1] = count
-        count += 1
-        j += 1
+        else:
+            matrix[i][j+1] = count
+            count += 1
+            j += 1
 
 flag = 'process'
 up_flag_left = 0
@@ -124,72 +128,112 @@ shift_down_right = 2
 print(flag)
 
 #flag = 'stop'
-# while True:
-#     if flag == 'stop':
-#         break
-#
-#     for steps in range (10):
-#         for step in range(shift_up_left):
-#             if flag == 'stop':
-#                 break
-#             up_step()
-#             up_flag_left = +1
-#         for step in range(shift_up_left):
-#             if flag == 'stop':
-#                 break
-#             left_step()
-#             left_flag_left = +1
-#         for step2 in range(shift_down_right):
-#             if flag == 'stop':
-#                 break
-#             down_step()
-#             down_flag_left = +1
-#         for step2 in range(shift_down_right):
-#             if flag == 'stop':
-#                 break
-#             right_step()
-#             right_flag_left = +1
-#
-#         shift_up_left += 2
-#         shift_down_right += 2
-# print(flag)
+while True:
+    if flag == 'stop':
+        break
+
+    for steps in range (n**2):
+        for step in range(shift_up_left):
+            if flag == 'stop':
+                break
+            up_step()
+            up_flag_left = +1
+        for step in range(shift_up_left):
+            if flag == 'stop':
+                break
+            left_step()
+            left_flag_left = +1
+        for step2 in range(shift_down_right):
+            if flag == 'stop':
+                break
+            down_step()
+            down_flag_left = +1
+        for step2 in range(shift_down_right):
+            if flag == 'stop':
+                break
+            right_step()
+            right_flag_left = +1
+
+        shift_up_left += 2
+        shift_down_right += 2
+print(flag)
 
 
 shift +=1
 
 
 
-for steps in range (10):
-for step in range(shift_up_left):
-    if flag == 'stop':
-        break
-    up_step()
-    up_flag_left = +1
-for step in range(shift_up_left):
-    if flag == 'stop':
-        break
-    left_step()
-    left_flag_left = +1
-for step2 in range(shift_down_right):
-    if flag == 'stop':
-        break
-    down_step()
-    down_flag_left = +1
-for step2 in range(shift_down_right):
-    if flag == 'stop':
-        break
-    right_step()
-    right_flag_left = +1
 
-shift_up_left += 2
-shift_down_right += 2
+
+
+
+#
+# for steps in range (1):
+#     for step in range(shift_up_left):
+#         if flag == 'stop':
+#             break
+#         up_step()
+#         up_flag_left = +1
+#     for step in range(shift_up_left):
+#         if flag == 'stop':
+#             break
+#         left_step()
+#         left_flag_left = +1
+#     for step2 in range(shift_down_right):
+#         if flag == 'stop':
+#             break
+#         down_step()
+#         down_flag_left = +1
+#     for step2 in range(shift_down_right):
+#         if flag == 'stop':
+#             break
+#         right_step()
+#         right_flag_left = +1
+#
+#     shift_up_left += 2
+#     shift_down_right += 2
+#
+#
+#
+# for step in range(3):
+#     if flag == 'stop':
+#         break
+#     up_step()
+#     up_flag_left = +1
+#
+# for step in range(3):
+#     if flag == 'stop':
+#         break
+#     left_step()
+#     left_flag_left = +1
+#
+# for step2 in range(5):
+#     if flag == 'stop':
+#         break
+#     down_step()
+#     down_flag_left = +1
+#
+# for step2 in range(1):
+#         if flag == 'stop':
+#             break
+#         right_step()
+#         right_flag_left = +1
+
+
+
+# for step in range(shift_up_left):
+#     if flag == 'stop':
+#         break
+#     up_step()
+#     up_flag_left = +1
+
+
+
+
+
+
+
 print(flag)
-
-
-
-
-
-
 
 
 
