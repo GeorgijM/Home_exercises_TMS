@@ -38,8 +38,8 @@ print('====================')
 #print(matrix[0][1])
 start_i = 3   #first index in matrix element
 start_j = 3   #second index in matrix element
-i = start_i    #a[i][j]
-j = start_j    #a[i][j]
+i = start_i     #a[i][j]
+j = start_j     #a[i][j]
 steps_in_circle_part = 1 #the way to go round the matrix start item is doing 1 step two times,
                         # than 2 steps two times, than 3 steps two times and so on..
 
@@ -52,7 +52,7 @@ def up_step():
     global count
     global i
     global j
-    if i >= 0:
+    if i > 0:
         matrix[i-1][j] = count
         count +=1
         i -= 1
@@ -62,7 +62,7 @@ def left_step():
     global count
     global i
     global j
-    if j >= 0:
+    if j > 0:
         matrix[i][j-1] = count
         count += 1
         j -= 1
@@ -73,16 +73,20 @@ def down_step():
     global count
     global i
     global j
-    if i <= n-1:
+    if i < n-1:
         matrix[i+1][j] = count
         count += 1
         i += 1
+    # elif i == n-1:
+    #     matrix[i][j] = count
+    #     count += 1
+    #     i += 1
 
 def right_step():
     global count
     global i
     global j
-    if j <= n-1:
+    if (j < n-1) and (matrix[i][j+1] == 0) :
         matrix[i][j+1] = count
         count += 1
         j += 1
@@ -93,22 +97,50 @@ down_flag_left = 0
 right_flag_left = 0
 
 shift = 0
+shift_up_left = 1
+shift_down_right = 2
+#while (shift <2 ):
+
+
+# while a[i][j]
 for steps in range (shift + 1):
-    for step in range(shift + 1):
+    for step in range(shift_up_left):
         up_step()
         up_flag_left = +1
-    for step in range(shift + 1):
+    for step in range(shift_up_left):
         left_step()
         left_flag_left = +1
-    for step2 in range(shift + 2):
+    for step2 in range(shift_down_right):
         down_step()
         down_flag_left = +1
-    for step2 in range(shift + 2):
+    for step2 in range(shift_down_right):
         right_step()
         right_flag_left = +1
 
+shift_up_left += 2
+shift_down_right += 2
+shift +=1
 
-shift += 1
+up_step()
+up_step()
+up_step()
+
+left_step()
+left_step()
+left_step()
+
+down_step()
+down_step()
+down_step()
+down_step()
+down_step()
+down_step()
+
+right_step()
+
+
+
+
 
 
 
@@ -128,3 +160,7 @@ shift += 1
 for matr_str in range(0, n):
     print(matrix[matr_str])
 
+print(f'{i=}')
+print(f'{j=}')
+print(f'{n=}')
+print(matrix[i][j])
