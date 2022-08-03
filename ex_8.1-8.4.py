@@ -62,25 +62,25 @@ class Car:
 
     def car_year(self):
         self.year = input('Set the car year: ')
-        print(f'The setted car year is {car_1.year}')
+        print(f'The setted car year is {self.year}')
 
     def car_type(self):
         self.type = input('Set the car type: ')
-        print(f'The setted car type is {car_1.type}')
+        print(f'The setted car type is {self.type}')
 
     def car_color(self):
         self.color = input('Set the car color: ')
-        print(f'The setted car color is {car_1.color}')
+        print(f'The setted car color is {self.color}')
 
 
 car_1 = Car()
 car_1.engine_start()
 
 
-# car_1.engine_off()
-# car_1.car_year()
-# car_1.car_type()
-# car_1.car_color()
+car_1.engine_off()
+car_1.car_year()
+car_1.car_type()
+car_1.car_color()
 
 
 # Задание 8.4
